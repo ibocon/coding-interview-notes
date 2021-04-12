@@ -51,3 +51,21 @@ for _ in range(E):
     # vs 에서 ve 로 간선이 추가되어, ve 의 진입차수 증가
     in_degree[ve] += 1
 
+answer = topology()
+for a in answer:
+    print(a, end=' ')
+
+'''
+[입력]
+7 8
+1 2
+1 5
+2 3
+2 6
+3 4
+4 7
+5 6
+6 4
+[출력]
+1 2 5 3 6 4 7
+'''
