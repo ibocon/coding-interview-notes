@@ -9,7 +9,7 @@ def dfs(n, m, v, x, y):
     # 방문처리
     V[x][y] = True
     total = 1
-    # DFS 의 핵심. LTRB 순으로 방문
+    # DFS 의 핵심. 재귀 함수로 방문.
     for k in range(4):
         nx = x + dx[k]
         ny = y + dy[k]
@@ -43,7 +43,7 @@ for i in range(1, N+1):
         if M[i-1][j-1] == 1 and not V[i][j]:
             towns.append(dfs(N, M, V, i, j))
 
-# 단지 수 출력
+# 단지 출력
 print(len(towns))
 for t in sorted(towns):
     print(t)
