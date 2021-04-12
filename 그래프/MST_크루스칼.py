@@ -2,21 +2,21 @@ import sys
 rl = sys.stdin.readline
 
 
-def find(P, v):
+def find(p, v):
     """ 부모노드 리스트 P 에서 노드 v 의 부모를 재귀 탐색 """
-    if P[v] != v:
-        P[v] = find(P, P[v])
-    return P[v]
+    if p[v] != v:
+        p[v] = find(p, p[v])
+    return p[v]
 
 
-def union(P, va, vb):
+def union(p, vs, ve):
     """ va 와 vb 의 루트 노드를 동일하게 만들어, 같은 집합이 되도록 결합 """
-    pa = find(P, va)
-    pb = find(P, vb)
+    pa = find(p, vs)
+    pb = find(p, ve)
     if pa < pb:
-        P[pa] = pb
+        p[pb] = pa
     else:
-        P[pb] = pa
+        p[pa] = pb
 
 
 # 'V' 노드 수, 'E' 간선 수
@@ -46,13 +46,13 @@ total_cost = 0
 
 # 순환이 발생하지 않으면서 비용이 최소인 간선부터 선택
 # 'c' 간선 비용, 'vs' 출발 노드, 've' 도착 노드
-for c, vs, ve in edges:
+for c, v_start, v_end in edges:
     # vs 와 ve 의 부모가 같으면 같은 집합에 속한다는 뜻이며 이미 연결되었다는 의미
     # 따라서 현재 간선을 추가하면 이미 연결된 vs와 ve 를 다시 연결하므로 순환 발생
-    if find(P, vs) != find(P, ve):
+    if find(P, v_start) != find(P, v_end):
         # vs 와 ve 를 같은 집합에 결합시켜 연결
-        union(P, vs, ve)
-        mst.append((vs, ve))
+        union(P, v_start, v_end)
+        mst.append((v_start, v_end))
         total_cost += c
 
 print(total_cost)
