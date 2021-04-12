@@ -12,43 +12,45 @@ def dijkstra(si):
     q = []
     # 시작 노드 si 의 최단거리는 0
     dist[si] = 0
-    # 시작 노드 si 를 검토할 노드 큐 q 에 추가
+    # 검토할 노드 큐 q 에 시작 노드 si 를 추가
     heappush(q, (dist[si], si))
 
-    # q 가 모두 소멸될 때까지 반복
+    # 검토할 노드가 모두 소멸될 때까지 반복
     while q:
-        # cd = 현재 노드까지 예상 최단거리, ci = 현재 노드 Index
+        # 'cd' si 부터 ci 까지 예상 최단거리, 'ci' 검토할 노드 번호
         cd, ci = heappop(q)
         # 예상 최단거리 cd 가 현재 최단거리 dist[ci] 보다 길다면 무시
         if dist[ci] < cd:
             continue
-        # 현재 노드 ci 와 연결된 노드의 최단 거리 갱신
+        # 검토하는 노드 ci 와 연결된 노드의 최단 거리 갱신
         for vi, vd in G[ci]:
-            # ci 와 연결된 vi 의 si 부터 vi 까지의 간선 거리 비용 nd
-            # si 부터 ci 의 간선비용은 cd, vi 의 간선비용은 vd
+            # ci 와 연결된 vi 검토
+            # si 부터 vi 까지의 간선 거리 비용 'nd' = si 부터 ci 의 간선비용 'cd' + vi 의 간선비용 'vd'
             nd = cd + vd
-            # 현재 si 부터 vi 까지 최단거리 dist[vi] 가 새로운 간선비용 nd 보다 크면 최단거리를 갱신
+            # 새로운 최단거리 'nd' 가 현재 최단거리 'dist[vi]' 보다 작으면 새로운 최단거리 'nd' 로 갱신
             if nd < dist[vi]:
                 dist[vi] = nd
-                # 더 짧아진 최단거리를 검토 큐 q 에 추가
+                # 최단거리가 갱신되었으므로, 노드 vi 를 q 에 추가
                 heappush(q, (dist[vi], vi))
 
 
-# N = 노드 수, M = 간선 수
+# 'N' 노드 수, 'M' 간선 수
 N, M = map(int, rl().split())
-# 시작 노드 index
+# 'start_index' 시작 노드 번호
 start_index = int(rl())
 # 연결 리스트로 그래프 표현
 G = [[] for _ in range(N + 1)]
 for _ in range(M):
-    # va = 출발 노드, vb = 도착노드, c = 간선비용
+    # 'va' 출발 노드, 'vb' 도착노드, 'c' 간선비용
     va, vb, c = map(int, rl().split())
-    # va 노드에서 vb 노드로 가는 비용이 c
+    # 'va' 에서 'vb' 로 가는 비용 'c'
     G[va].append((vb, c))
 
-# si 시작 노드로부터의 최단거리. 'INF 무한' 으로 초기화
+# 'dist' 시작 노드 start_index 부터 각 노드까지의 최단거리 리스트
+# dist 를 'INF 무한' 으로 초기화
 dist = [INF] * (N + 1)
 
+# 다익스트라 알고리즘으로 dist 계산 갱신
 dijkstra(start_index)
 
 for i in range(1, N + 1):
@@ -72,5 +74,5 @@ for i in range(1, N + 1):
 2
 3
 7
-INFINITY
+INF
 '''
