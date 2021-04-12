@@ -1,3 +1,6 @@
+# Prefix sum 누적합
+# 중복해서 누적하는 부분이 없는지 확인할 것
+
 import sys
 rl = sys.stdin.readline
 
