@@ -18,7 +18,9 @@
 * [MST_쿠르스칼](/그래프/MST_크루스칼.py)
 
 ## 기타
+* [PrimeNumber_소수](/PrimeNumber_소수.py)
 * [PrefixSum_누적합](/PrefixSum_누적합.py)
+* [TwoPointer_투포인터](/TwoPointer_투포인터.py)
 * [Trie_트라이](/Trie_트라이.py)
 * [LIS_가장 긴 증가하는 부분 수열](</LIS_가장 긴 증가하는 부분 수열.py>)
-* [행렬](/행렬.py)
+* [Matrix_행렬](/Matrix_행렬.py)

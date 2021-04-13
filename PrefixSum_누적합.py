@@ -8,9 +8,9 @@ N = int(rl())
 A = list(map(int, rl().split()))
 
 # 누적 합
-prefix_sum = [0]
+prefix_sum = [0] * (N+1)
 for i in range(1, len(A) + 1):
-    prefix_sum.append(prefix_sum[i - 1] + A[i - 1])
+    prefix_sum[i] = prefix_sum[i - 1] + A[i - 1]
 
 # 'S' 시작 번호, 'E' 끝 번호
 S, E = map(int, rl().split())
