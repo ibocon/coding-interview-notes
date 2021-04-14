@@ -23,7 +23,7 @@ def dijkstra(si):
         if dist[ci] < cd:
             continue
         # 검토하는 노드 ci 와 연결된 노드의 최단 거리 갱신
-        for vi, vd in G[ci]:
+        for vd, vi in G[ci]:
             # ci 와 연결된 vi 검토
             # si 부터 vi 까지의 간선 거리 비용 'nd' = si 부터 ci 의 간선비용 'cd' + vi 의 간선비용 'vd'
             nd = cd + vd
@@ -44,7 +44,7 @@ for _ in range(M):
     # 'va' 출발 노드, 'vb' 도착노드, 'c' 간선비용
     va, vb, c = map(int, rl().split())
     # 'va' 에서 'vb' 로 가는 비용 'c'
-    G[va].append((vb, c))
+    G[va].append((c, vb))
 
 # 'dist' 시작 노드 start_index 부터 각 노드까지의 최단거리 리스트
 # dist 를 'INF 무한' 으로 초기화
