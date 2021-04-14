@@ -10,15 +10,11 @@ def bfs(n, m, v, x, y):
     # 순차적으로 방문하는 리스트
     # BFS 의 핵심. 큐로 순차 방문.
     q = deque([(x, y)])
-    total = 0
+    v[x][y] = True
 
+    total = 0
     while q:
         cx, cy = q.popleft()
-
-        # 방문했다면 무시
-        if v[cx][cy]:
-            continue
-        v[cx][cy] = True
 
         # 아파트가 아니라면 무시
         if m[cx-1][cy-1] == 0:
@@ -34,6 +30,7 @@ def bfs(n, m, v, x, y):
                 # 순환되지 않도록 방문 여부 확인 후 탐색
                 if m[nx-1][ny-1] == 1 and not v[nx][ny]:
                     q.append((nx, ny))
+                    v[nx][ny] = True
 
     return total
 
