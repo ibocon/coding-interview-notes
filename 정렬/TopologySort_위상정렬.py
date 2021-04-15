@@ -15,32 +15,32 @@ rl = sys.stdin.readline
 
 def topology():
     """ Topology sort 위상 정렬 함수 """
-    r = []
+    ret = []
     q = deque()
 
     # 1. 진입차수가 0 인 노드를 큐에 추가
     for i in range(1, V+1):
-        if in_degree[i] == 0:
+        if ID[i] == 0:
             q.append(i)
 
     while q:
         # 큐에서 진입차수가 0 인 노드 추출
         cv = q.popleft()
-        r.append(cv)
+        ret.append(cv)
 
         for nv in G[cv]:
             # 노드 cv 에서 출발하는 간선 제거
-            in_degree[nv] -= 1
-            if in_degree[nv] == 0:
+            ID[nv] -= 1
+            if ID[nv] == 0:
                 q.append(nv)
 
-    return r
+    return ret
 
 
 # 'V' 노드 수, 'E' 간선 수
 V, E = map(int, rl().split())
 # 모든 노드의 진입 차수를 0 으로 초기화
-in_degree = [0] * (V+1)
+ID = [0] * (V + 1)
 # 그래프 초기화
 G = [[] for _ in range(V+1)]
 
@@ -49,7 +49,7 @@ for _ in range(E):
     vs, ve = map(int, rl().split())
     G[vs].append(ve)
     # vs 에서 ve 로 간선이 추가되어, ve 의 진입차수 증가
-    in_degree[ve] += 1
+    ID[ve] += 1
 
 answer = topology()
 for a in answer:

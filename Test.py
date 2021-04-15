@@ -1,26 +1,37 @@
+from collections import deque
 import sys
 rl = sys.stdin.readline
 
-N = int(rl())
-M = int(rl())
-INF = int(1e9)
-m = [[INF] * (N+1) for _ in range(N+1)]
-for t in range(1, N+1):
-    m[t][t] = 0
 
-for _ in range(M):
-    a, b, c = map(int, rl().split())
-    m[a][b] = min(m[a][b], c)
+def topology():
+    r = []
+    q = deque()
 
-for k in range(1, N+1):
     for i in range(1, N+1):
-        for j in range(1, N+1):
-            m[i][j] = min(m[i][j], m[i][k] + m[k][j])
+        if ID[i] == 0:
+            q.append(i)
 
-for x in range(1, N+1):
-    for y in range(1, N+1):
-        if m[x][y] == INF:
-            print(0, end=" ")
-        else:
-            print(m[x][y], end=" ")
-    print()
+    while q:
+        cv = q.popleft()
+        r.append(cv)
+
+        for nv in G[cv]:
+            ID[nv] -= 1
+            if ID[nv] == 0:
+                q.append(nv)
+
+    return r
+
+
+N, M = map(int, rl().split())
+ID = [0] * (N+1)
+G = [[] for _ in range(N+1)]
+for _ in range(M):
+    a, b = map(int, rl().split())
+    G[a].append(b)
+    ID[b] += 1
+
+answer = topology()
+for k in answer:
+    print(k, end=" ")
+
