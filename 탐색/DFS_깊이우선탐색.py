@@ -1,5 +1,7 @@
 import sys
 rl = sys.stdin.readline
+# 재귀 최대값 변경
+sys.setrecursionlimit(10**10)
 
 
 def dfs(n, m, v, x, y):
