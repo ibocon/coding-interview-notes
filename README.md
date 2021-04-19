@@ -1,5 +1,7 @@
 # 코딩 인터뷰 노트
 
+* [시간측정](/시간측정.py)
+
 ## 정렬
 * [QuickSort_퀵정렬](/정렬/QuickSort_퀵정렬.py)
 * [RadixSort_기수정렬](/정렬/RadixSort_기수정렬.py) 
