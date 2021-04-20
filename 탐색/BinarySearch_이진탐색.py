@@ -1,4 +1,7 @@
-def binary_search(a, t, lo, hi):
+def binary_search(a, t, lo=0, hi=None):
+    if hi is None:
+        hi = len(a)
+
     while lo < hi:
         mid = (lo + hi) // 2
         if a[mid] == t:
@@ -12,11 +15,14 @@ def binary_search(a, t, lo, hi):
     return None
 
 
-def bisect_left(a, t, lo, hi):
+def bisect_left(a, t, lo=0, hi=None):
     """
     cpython/biselct.py 의 bisect_left 함수
     찾는 값 t 의 번호를 반환한다.
     """
+    if hi is None:
+        hi = len(a)
+
     while lo < hi:
         mid = (lo + hi) // 2
         if t <= a[mid]:
@@ -29,11 +35,14 @@ def bisect_left(a, t, lo, hi):
     return lo
 
 
-def bisect_right(a, t, lo, hi):
+def bisect_right(a, t, lo=0, hi=None):
     """
     cpython/biselct.py 의 bisect_right 함수
     찾는 값 t 의 바로 다음 번호를 반환한다.
     """
+    if hi is None:
+        hi = len(a)
+
     while lo < hi:
         mid = (lo + hi) // 2
         if t < a[mid]:
@@ -46,7 +55,7 @@ def bisect_right(a, t, lo, hi):
     return lo
 
 
-def binary_count(a, t, lo, hi):
+def binary_count(a, t, lo=0, hi=None):
     right = bisect_right(a, t, lo, hi)
     left = bisect_left(a, t, lo, hi)
 
