@@ -46,6 +46,13 @@ def bisect_right(a, t, lo, hi):
     return lo
 
 
+def binary_count(a, t, lo, hi):
+    right = bisect_right(a, t, lo, hi)
+    left = bisect_left(a, t, lo, hi)
+
+    return right - left
+
+
 # 테스트
 N = 10
 A = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
@@ -54,8 +61,16 @@ T = 13
 print(binary_search(A, T, 0, N))  # 6
 print(bisect_left(A, T, 0, N))  # 6
 print(bisect_right(A, T, 0, N))  # 7
-
+print()
 T = 20
 print(binary_search(A, T, 0, N))  # None
 print(bisect_left(A, T, 0, N))  # 10
 print(bisect_right(A, T, 0, N))  # 10
+print()
+N = 8
+A = [1, 2, 2, 3, 3, 3, 4, 4]
+print(binary_count(A, 1, 0, N))  # 1
+print(binary_count(A, 2, 0, N))  # 2
+print(binary_count(A, 3, 0, N))  # 3
+print(binary_count(A, 4, 0, N))  # 2
+print(binary_count(A, 5, 0, N))  # 0
