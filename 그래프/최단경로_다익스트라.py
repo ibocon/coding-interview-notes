@@ -7,11 +7,13 @@ rl = sys.stdin.readline
 INF = int(1e9)
 
 
-def dijkstra(si):
+def dijkstra(n, g, si):
     """ 힙 자료구조를 활용한 다익스트라 알고리즘 O(E * logV) """
-    q = []
+    dist = [INF] * (n + 1)
     # 시작 노드 si 의 최단거리는 0
     dist[si] = 0
+
+    q = []
     # 검토할 노드 큐 q 에 시작 노드 si 를 추가
     heappush(q, (dist[si], si))
 
@@ -23,7 +25,7 @@ def dijkstra(si):
         if dist[ci] < cd:
             continue
         # 검토하는 노드 ci 와 연결된 노드의 최단 거리 갱신
-        for vd, vi in G[ci]:
+        for vd, vi in g[ci]:
             # ci 와 연결된 vi 검토
             # si 부터 vi 까지의 간선 거리 비용 'nd' = si 부터 ci 의 간선비용 'cd' + vi 의 간선비용 'vd'
             nd = cd + vd
@@ -33,6 +35,7 @@ def dijkstra(si):
                 # 최단거리가 갱신되었으므로, 노드 vi 를 q 에 추가
                 heappush(q, (dist[vi], vi))
 
+    return dist
 
 # 'N' 노드 수, 'M' 간선 수
 N, M = map(int, rl().split())
@@ -48,16 +51,15 @@ for _ in range(M):
 
 # 'dist' 시작 노드 start_index 부터 각 노드까지의 최단거리 리스트
 # dist 를 'INF 무한' 으로 초기화
-dist = [INF] * (N + 1)
 
 # 다익스트라 알고리즘으로 dist 계산 갱신
-dijkstra(start_index)
+D = dijkstra(N, G, start_index)
 
 for i in range(1, N + 1):
-    if dist[i] == INF:
+    if D[i] == INF:
         print("INF")
     else:
-        print(dist[i])
+        print(D[i])
 
 '''
 [입력]
