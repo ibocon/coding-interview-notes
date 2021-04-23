@@ -28,7 +28,7 @@ def bellman_ford(v, e, s):
                 dist[ee] = -INF
                 is_edge_relaxed = True
 
-    return dist[1:]
+    return dist
 
 
 V = 9
@@ -38,7 +38,7 @@ E = [
 S = 1
 
 result = bellman_ford(V, E, S)
-for r in result:
+for r in result[1:]:
     if r == -INF:
         print("-INF")
     elif r == INF:
