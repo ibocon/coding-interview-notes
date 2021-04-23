@@ -1,35 +1,33 @@
 import sys
 rl = sys.stdin.readline
 INF = int(1e9)
-
 def bellman_ford(v, e, s):
     """ 벨만 포드 알고리즘 함수 """
     dist = [INF] * (v+1)
     dist[s] = 0
 
-    is_edge_relaxed = True
+    is_updated = True
     for vi in range(1, v+1):
-        if not is_edge_relaxed:
+        if not is_updated:
             break
 
-        is_edge_relaxed = False
+        is_updated = False
         for ec, es, ee in e:
-            if dist[es] + ec < dist[ee]:
+            if dist[es] != INF and dist[es] + ec < dist[ee]:
                 dist[ee] = dist[es] + ec
-                is_edge_relaxed = True
+                is_updated = True
 
-    is_edge_relaxed = True
+    is_updated = True
     for vi in range(1, v+1):
-        if not is_edge_relaxed:
+        if not is_updated:
             break
-        is_edge_relaxed = False
+        is_updated = False
         for ec, es, ee in e:
-            if dist[es] + ec < dist[ee]:
+            if dist[es] != INF and dist[es] + ec < dist[ee]:
                 dist[ee] = -INF
-                is_edge_relaxed = True
+                is_updated = True
 
     return dist
-
 
 V = 9
 E = [
