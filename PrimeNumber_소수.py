@@ -34,7 +34,7 @@ def sieve(n):
                 j += 1
 
     # 소수 목록 산출
-    return [i for i in range(2, n) if s[i]]
+    return [i for i in range(2, n+1) if s[i]]
 
 
 for p in sieve(35):
